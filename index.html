@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ULT Builder v0.1</title>
+    <style>
+        body {
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>ULT Builder v0.1</h1>
+    <table id="tblAugments">
+        <thead>
+            <tr>
+                <th>
+                    #
+                </th>
+                <th>
+                    Augment
+                </th>
+                <th>
+                    A
+                </th>
+                <th>
+                    Type
+                </th>
+                <th>
+                    B (Attack)
+                </th>
+                <th>
+                    B (Save)
+                </th>
+                <th>
+                    B (Hit)
+                </th>
+                <th>
+                    Tooltip
+                </th>
+                <th>
+                    A (Save)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+    <h2>// PROPOSED USER-FACING TABLE</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    Select
+                </th>
+                <th>
+                    Augment
+                </th>
+                <th>
+                    Type
+                </th>
+                <th>
+                    A
+                </th>
+                <th>
+                    B
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input type="checkbox"></button></td>
+                <td>Sweep</td>
+                <td>Attack</td>
+                <td>As a Bonus Action, you make a melee attack against all creatures of your choice within Reach with Advantage.</td>
+                <td>Affected targets gain the Proned condition.</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox"></button></td>
+                <td>Spray</td>
+                <td>Save</td>
+                <td>With an Attack action, you choose a point within twice your weapon’s Range. Each creature within 20 feet of that point must succeed a Dexterity Saving Throw. On a fail, they take damage equal to three rolls of your weapon’s damage die. They only take half damage from a success.
+</td>
+                <td>Until the end of your next turn, the next Attack Roll made against the target has Advantage.</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+<script>
+    async function loadData() {
+        let data;
+        try {
+            const response = await fetch('./data.json');
+            data = await response.json();
+            console.log(data);
+        } catch (error) {
+            console.error("Could not fetch the JSON file:", error);
+        }
+
+        const table = document.getElementById("tblAugments");
+        for (let i = 0; i < data.length; i++){
+            const newRow = table.insertRow(-1);
+            const num = newRow.insertCell(0);
+            const name = newRow.insertCell(1);
+            const a = newRow.insertCell(2);
+            const type = newRow.insertCell(3);
+            const bAttack = newRow.insertCell(4);
+            const bSave = newRow.insertCell(5);
+            const bHit = newRow.insertCell(6);
+            const tooltip = newRow.insertCell(7);
+            const aSave = newRow.insertCell(8);
+            num.textContent = data[i].num;
+            name.textContent = data[i].name;
+            a.textContent = data[i].a;
+            type.textContent = data[i].type;
+            bAttack.textContent = data[i].bAttack;
+            bSave.textContent = data[i].bSave;
+            bHit.textContent = data[i].bHit;
+            tooltip.textContent = data[i].tooltip;
+            aSave.textContent = data[i].aSave;
+
+            // num.hidden = "true";
+        }
+    }
+
+    loadData();
+</script>
+</html>
