@@ -1,5 +1,3 @@
-
-
 [
   {
     "num": 1,
@@ -11,7 +9,7 @@
     "bHit": " They also gain the Proned condition.",
     "tooltip": "",
     "aSave": "",
-    "": ""
+    "bDesc": " Affected creatures gain the Proned condition."
   },
   {
     "num": 2,
@@ -23,7 +21,7 @@
     "bHit": " The target is also pulled or pushed to a space of your choice within three times your weapon’s Reach and become Grappled by you.",
     "tooltip": "",
     "aSave": "",
-    "": ""
+    "bDesc": " Affected creatures are also pulled or pushed to a space of your choice within three times your weapon’s Reach and become Grappled by you"
   },
   {
     "num": 3,
@@ -35,7 +33,7 @@
     "bHit": " They also become marked until the end of your next turn. You can use a Bonus Action to consume all marks on all creatures and deal one roll of your weapon’s damage die to them for each mark they had.",
     "tooltip": "",
     "aSave": "",
-    "": ""
+    "bDesc": " Affected creatures become marked until the end of your next turn. You can use a Bonus Action to consume all marks on all creatures and deal one roll of your weapon’s damage die to them for each mark they had."
   },
   {
     "num": 4,
@@ -47,7 +45,7 @@
     "bHit": " You also deal bonus damage equal to twice your Proficiency bonus.",
     "tooltip": "",
     "aSave": "",
-    "": ""
+    "bDesc": " You also deal bonus damage equal to twice your Proficiency bonus."
   },
   {
     "num": 5,
@@ -59,7 +57,7 @@
     "bHit": " They also become marked until the start of your next turn. While marked and within this weapon’s Range/Reach, they provoke Opportunity Attacks from you the first time they move at least 5 feet willingly.",
     "tooltip": "",
     "aSave": "",
-    "": ""
+    "bDesc": " Affected creatures become marked until the start of your next turn. While marked and within this weapon’s Range/Reach, they provoke Opportunity Attacks from you the first time they move at least 5 feet willingly."
   },
   {
     "num": 6,
@@ -71,7 +69,7 @@
     "bHit": " They also gain the Blinded condition to you until the end of their next turn. During this time, they deal half damage with any attacks they have Disadvantage on.",
     "tooltip": "(Before or after making the attack, you can move up to your Speed)",
     "aSave": "",
-    "": ""
+    "bDesc": " Affected creatures gain the Blinded condition to you until the end of their next turn. During this time, they deal half damage with any attacks they have Disadvantage on."
   },
   {
     "num": 7,
@@ -83,7 +81,7 @@
     "bHit": " Until the end of your next turn, the next Attack Roll made against them also has Advantage.",
     "tooltip": "",
     "aSave": " They only take half damage from a success.",
-    "": ""
+    "bDesc": " Until the end of your next turn, the next Attack Roll made against the creature also has Advantage."
   },
   {
     "num": 8,
@@ -95,7 +93,7 @@
     "bHit": " They also gain the Frightened condition until the end of your next turn.",
     "tooltip": "",
     "aSave": "",
-    "": ""
+    "bDesc": " Affected creatures gain the Frightened condition until the end of your next turn."
   },
   {
     "num": 9,
@@ -107,7 +105,7 @@
     "bHit": " Additionally, for 1 minute, the next two uses of your Parry augment will not expend your Reaction.",
     "tooltip": "",
     "aSave": "",
-    "": ""
+    "bDesc": " Additionally, for 1 minute, the next two uses of your Parry augment will not expend your Reaction."
   },
   {
     "num": 10,
@@ -119,7 +117,7 @@
     "bHit": " Additionally, for 1 minute, whenever you succeed a Saving Throw, you can move up to 10 feet without provoking Opportunity Attacks.",
     "tooltip": "",
     "aSave": "",
-    "": ""
+    "bDesc": " Additionally, for 1 minute, whenever you succeed a Saving Throw, you can move up to 10 feet without provoking Opportunity Attacks."
   },
   {
     "num": 11,
@@ -131,7 +129,7 @@
     "bHit": " You also mark targets hit for 1 minute. When they deal damage to you, you can use your Reaction to remove that mark and reduce the triggering damage to 0.",
     "tooltip": "",
     "aSave": "",
-    "": ""
+    "bDesc": " You also mark the affected creatures for 1 minute. When they deal damage to you, you can use your Reaction to remove that mark and reduce the triggering damage to 0."
   },
   {
     "num": 12,
@@ -143,7 +141,7 @@
     "bHit": " Then, you and one willing creature of your choice within 15 feet can move up to your respective Speeds without provoking Opportunity Attacks.",
     "tooltip": "",
     "aSave": "",
-    "": ""
+    "bDesc": " Then, you and one willing creature of your choice within 15 feet can move up to your respective Speeds without provoking Opportunity Attacks."
   },
   {
     "num": 13,
@@ -155,19 +153,19 @@
     "bHit": " You also regain an expended spell slot, or regain use of one AS spell, that is the level equal to your Replenish augment.",
     "tooltip": "",
     "aSave": "",
-    "": ""
+    "bDesc": " You also regain an expended spell slot, or regain use of one AS spell, that is the level equal to your Replenish augment."
   },
   {
     "num": 14,
     "name": "Cast",
-    "a": "x",
-    "type": "x",
+    "a": "",
+    "type": "",
     "bAttack": " On a miss, you can choose to reroll one of your Attack Rolls. You must use the new roll, even if it is lower than the previous roll.",
     "bSave": ". If a creature succeeds the Saving Throw, you can force one target to reroll their Saving Throw. They must use the new roll, even if it is higher than the previous roll.",
     "bHit": " You can also reroll each damage die from the attack once. You must use the new rolls, even if they are lower than the previous roll.",
     "tooltip": "",
     "aSave": "",
-    "": ""
+    "bDesc": " i need help on this one"
   },
   {
     "num": 15,
@@ -179,187 +177,186 @@
     "bHit": " They also become marked for 1 minute. When marked creatures deal damage to you, you do not need to roll to maintain Concentration of spells.",
     "tooltip": "",
     "aSave": "",
-    "": ""
+    "bDesc": " Affected creatures become marked for 1 minute. When marked creatures deal damage to you, you do not need to roll to maintain Concentration of spells."
   },
   {
     "num": 16,
     "name": "Proxy",
-    "a": "x",
-    "type": "x",
+    "a": "",
+    "type": "",
     "bAttack": " The Range/Reach of the next attack you make with this weapon or the next spell you cast is increased by 30 feet.",
     "bSave": " The Range/Reach of the next attack you make with this weapon or the next spell you cast is increased by 30 feet.",
     "bHit": " The Range/Reach of the next attack you make with this weapon or the next spell you cast is increased by 30 feet.",
     "tooltip": "(A creature cannot be affected by the same spell more than once. If you can use your Action or Bonus Action to control the spell’s effect, you either control one of them or all at the same time.)",
     "aSave": "",
-    "": ""
+    "bDesc": " The Range/Reach of the next attack you make with this weapon or the next spell you cast is increased by 30 feet."
   },
   {
     "num": 17,
     "name": "Converter",
-    "a": "x",
-    "type": "x",
+    "a": "",
+    "type": "",
     "bAttack": " Then, you and each creature of your choice within 30 feet of you restore Hit Points equal to two rolls of your Hit Die. You do not expend those Hit Die.",
     "bSave": " Then, you and each creature of your choice within 30 feet of you restore Hit Points equal to two rolls of your Hit Die. You do not expend those Hit Die.",
     "bHit": " Then, you and each creature of your choice within 30 feet of you restore Hit Points equal to two rolls of your Hit Die. You do not expend those Hit Die.",
     "tooltip": "",
     "aSave": "",
-    "": ""
+    "bDesc": " Then, you and each creature of your choice within 30 feet of you restore Hit Points equal to two rolls of your Hit Die. You do not expend those Hit Die."
   },
   {
     "num": 18,
     "name": "Shroud",
     "a": "As a Reaction when a creature makes an attack against you, you can use the Shroud augment before they make the Attack Roll. When you do, it covers an area within 15 feet centered around you instead, and the attacker must make a Wisdom Saving Throw. On a fail, they can't take Reactions until the end of your next turn",
     "type": "Save",
-    "bAttack": "-",
-    "bSave": "-",
-    "bHit": "-",
+    "bAttack": "",
+    "bSave": "",
+    "bHit": "",
     "tooltip": "(Using this Limit Trigger does not expend any uses of your Shroud augment.)",
     "aSave": "",
-    "": ""
+    "bDesc": ""
   },
   {
     "num": 19,
     "name": "Slog",
-    "a": "-",
-    "type": "x",
+    "a": "",
+    "type": "",
     "bAttack": " On a hit, the target gains the Paralyzed condition until the end of your next turn, or until the next time they take damage from a critical hit or a failed Saving Throw.",
     "bSave": " and gains the Paralyzed condition until the end of your next turn, or until the next time they take damage from a critical hit or a failed Saving Throw.",
     "bHit": " The target also gains the Paralyzed condition until the end of your next turn, or until the next time they take damage from a critical hit or a failed Saving Throw.",
     "tooltip": "",
     "aSave": "",
-    "": ""
+    "bDesc": " Affected creatures gains the Paralyzed condition until the end of your next turn, or until the next time they take damage from a critical hit or a failed Saving Throw."
   },
   {
     "num": 20,
     "name": "Load",
-    "a": "-",
-    "type": "x",
+    "a": "",
+    "type": "",
     "bAttack": " Additionally, for 1 minute, one creature within 30 feet you can see loses Resistance to each damage type you’ve chosen for your Load augment. This lasts until they succeed an Intelligence Saving Throw at the end of each of their turns.",
     "bSave": " Additionally, for 1 minute, one creature within 30 feet you can see loses Resistance to each damage type you’ve chosen for your Load augment. This lasts until they succeed an Intelligence Saving Throw at the end of each of their turns.",
     "bHit": " Additionally, for 1 minute, one creature within 30 feet you can see loses Resistance to each damage type you’ve chosen for your Load augment. This lasts until they succeed an Intelligence Saving Throw at the end of each of their turns.",
     "tooltip": "",
     "aSave": "",
-    "": ""
+    "bDesc": " Additionally, for 1 minute, one creature within 30 feet you can see loses Resistance to each damage type you’ve chosen for your Load augment. This lasts until they succeed an Intelligence Saving Throw at the end of each of their turns."
   },
   {
     "num": 21,
     "name": "Scout",
     "a": "If a creature has the Bug from your Scout augment latched onto them, you can use a Magic action to detonate it. Each creature within 10 feet of the bugged target must succeed a Constitution Saving Throw. On a fail, they take damage equal to one roll of your weapon's damage die and gain the Stunned condition until the end of your next turn",
     "type": "Save",
-    "bAttack": "-",
-    "bSave": "-",
-    "bHit": "-",
+    "bAttack": "",
+    "bSave": "",
+    "bHit": "",
     "tooltip": "",
     "aSave": " They only take half damage on a success. The ammo is then destroyed.",
-    "": ""
+    "bDesc": ""
   },
   {
     "num": 22,
     "name": "Barrier",
-    "a": "-",
-    "type": "x",
-    "bAttack": "-",
-    "bSave": "-",
-    "bHit": "-",
+    "a": "",
+    "type": "",
+    "bAttack": "",
+    "bSave": "",
+    "bHit": "",
     "tooltip": "(While the barrier persists, each friendly creature that starts their turn within 10 feet of the barrier gains Temporary Hit Points equal to your Proficiency bonus.)",
     "aSave": "",
-    "": ""
+    "bDesc": ""
   },
   {
     "num": 23,
     "name": "Balance",
     "a": "As a Reaction when you take damage, or when you use your Balance augment, you can steel yourself. You gain Resolution which lasts for 1 minute. While you have Resolution, you cannot be pushed, pulled, grappled, or gain the Proned condition unwillingly.\n\nWhen you hit an Attack Roll, you can expend Resolution to gain temporary hit points equal to one roll of your weapon’s damage die, which is doubled if you are Bloodied.\n",
     "type": "Hit",
-    "bAttack": "-",
-    "bSave": "-",
-    "bHit": "-",
+    "bAttack": "",
+    "bSave": "",
+    "bHit": "",
     "tooltip": "",
     "aSave": "",
-    "": ""
+    "bDesc": ""
   },
   {
     "num": 24,
     "name": "Manuever",
     "a": "As an Action, you move up to your Speed without provoking Opportunity Attacks. Then, you make an Attack Roll against each creature of your choice that was within your weapon’s Reach during the movement.",
     "type": "Attack",
-    "bAttack": "-",
-    "bSave": "-",
-    "bHit": "-",
+    "bAttack": "",
+    "bSave": "",
+    "bHit": "",
     "tooltip": "(If you attack three or more creatures with this Limit Trigger, you can use it again as a Bonus Action. You cannot attack the same creatures you targeted the first time you used it.)",
     "aSave": "",
-    "": ""
+    "bDesc": ""
   },
   {
     "num": 25,
     "name": "Hookshot",
     "a": "When you use your Hookshot augment, you can empower it to double its range. If you target a creature, you can instead not move and attempt to pull them. If you do, the creature must succeed a Strength Saving Throw. On a fail, the target is pulled to a space 5 feet next to you",
     "type": "Save",
-    "bAttack": "-",
-    "bSave": "-",
-    "bHit": "-",
+    "bAttack": "",
+    "bSave": "",
+    "bHit": "",
     "tooltip": "(You can use this Limit Trigger twice within one minute.)",
     "aSave": " If they succeed, you can choose to pull yourself to one of the creatures subjected to the Saving Throw.",
-    "": ""
+    "bDesc": ""
   },
   {
     "num": 26,
     "name": "Flight",
     "a": "When you hit an attack with this weapon during your turn, you can give yourself Fly Speed equal to your Speed until the end of your next turn. If you already have a Fly Speed, it is instead doubled for the duration. During this time, your Speed cannot be reduced in any way.",
     "type": "Hit",
-    "bAttack": "-",
-    "bSave": "-",
-    "bHit": "-",
+    "bAttack": "",
+    "bSave": "",
+    "bHit": "",
     "tooltip": "",
     "aSave": "",
-    "": ""
+    "bDesc": ""
   },
   {
     "num": 27,
     "name": "Polarity",
-    "a": "-",
-    "type": "x",
+    "a": "",
+    "type": "",
     "bAttack": " On a hit, you mark the space one target of the attack is occupying. For 1 minute, you can use your Bonus Action to remove the mark and teleport the target back to that space.",
     "bSave": " and you mark the space any target of the Saving Throw is occupying. For 1 minute, you can use your Bonus Action to remove the mark and teleport the target back to that space.",
     "bHit": " You also mark the space they are occupying. For 1 minute, you can use your Bonus Action to remove the mark and teleport the target back to that space.",
     "tooltip": "",
     "aSave": "",
-    "": ""
+    "bDesc": " You also mark the space they are occupying. For 1 minute, you can use your Bonus Action to remove the mark and teleport the target back to that space."
   },
   {
     "num": 28,
     "name": "Manipulate",
     "a": "When you hit an attack with this weapon or with a spell while the target is within your Manipulate augment’s Range, you can choose to do one of the following:\n- Force the target to drop one item of your choice that it's holding.\n- Use your Manipulate augment on another target.\n- Use an item that you have in your inventory.\n\nIf you choose to disarm the target, you can also choose to give it an item you have in your possession.\n",
     "type": "Hit",
-    "bAttack": "-",
-    "bSave": "-",
-    "bHit": "-",
+    "bAttack": "",
+    "bSave": "",
+    "bHit": "",
     "tooltip": "",
     "aSave": "",
-    "": ""
+    "bDesc": ""
   },
   {
     "num": 29,
     "name": "Vision",
-    "a": "-",
-    "type": "x",
+    "a": "",
+    "type": "",
     "bAttack": " Additionally, for 1 minute, your Attack Rolls against a creature you can see within 60 feet of you cannot gain Disadvantage, and their attacks against you also cannot gain Advantage.",
     "bSave": " Additionally, for 1 minute, your Attack Rolls against a creature you can see within 60 feet of you cannot gain Disadvantage, and their attacks against you also cannot gain Advantage.",
     "bHit": " Additionally, for 1 minute, your Attack Rolls against a creature you can see within 60 feet of you cannot gain Disadvantage, and their attacks against you also cannot gain Advantage.",
     "tooltip": "",
     "aSave": "",
-    "": ""
+    "bDesc": " Additionally, for 1 minute, your Attack Rolls against a creature you can see within 60 feet of you cannot gain Disadvantage, and their attacks against you also cannot gain Advantage."
   },
   {
     "num": 30,
     "name": "Prep",
-    "a": "-",
-    "type": "x",
+    "a": "",
+    "type": "",
     "bAttack": " You also gain another Action this turn. That action can be used only to take the Attack (one weapon attack only), Dash, Disengage, Hide, Utilize, or Quick Recovery action.",
     "bSave": " You also gain another Action this turn. That action can be used only to take the Attack (one weapon attack only), Dash, Disengage, Hide, Utilize, or Quick Recovery action.",
     "bHit": " You also gain another Action this turn. That action can be used only to take the Attack (one weapon attack only), Dash, Disengage, Hide, Utilize, or Quick Recovery action.",
     "tooltip": "",
     "aSave": "",
-    "": ""
+    "bDesc": " You also gain another Action this turn. That action can be used only to take the Attack (one weapon attack only), Dash, Disengage, Hide, Utilize, or Quick Recovery action."
   }
 ]
-
