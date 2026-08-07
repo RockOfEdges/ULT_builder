@@ -14,6 +14,10 @@
             border-collapse: collapse;
         }
 
+        td {
+            white-space: pre-line;
+        }
+
         th, td {
             padding: 5px;
         }
@@ -212,35 +216,53 @@
             name.textContent = data[index].name;
             type.textContent = data[index].type;
             a.onclick = function(){
-                updateFinalSentence(this);
+                updateSelectedAugmentsOptions(this);
+                updateFinalSentence();
             };
             a.innerHTML = "<input type='radio' name='aOptions' value=" + index + ">" + data[index].a;
             b.onclick = function(){
-                updateFinalSentence(this);
+                updateSelectedAugmentsOptions(this);
+                updateFinalSentence();
             };
             b.textContent = data[index].bDesc;
             b.innerHTML = "<input type='radio' name='bOptions' value=" + index + ">" + data[index].bDesc;
         } else {
             document.getElementById("rSelectedAugment" + index).remove();
         }
+        updateFloatingWindowPosition();
     }
 
     let isFloatingWindowHidden = false;
+    const floatingWindowTransition = window.getComputedStyle(floatingWindow).getPropertyValue('transition');
     function toggleFloatingWindow(){
         const floatingWindow = document.getElementById("floatingWindow");
+        floatingWindow.style.transition = floatingWindowTransition;
         const btnShowHide = document.getElementById("btnShowHide");
+        const height = floatingWindow.offsetHeight - 30;
         if (isFloatingWindowHidden){
             floatingWindow.style.bottom = "0px";
             btnShowHide.textContent = "Hide";
         } else {
-            floatingWindow.style.bottom = "-440px";
+            floatingWindow.style.bottom = "-" + height + "px";
             btnShowHide.textContent = "Show";
         }
         isFloatingWindowHidden = !isFloatingWindowHidden;
     }
 
-    function updateFinalSentence(cell){
+    function updateFloatingWindowPosition(){
+        const floatingWindow = document.getElementById("floatingWindow");
+        floatingWindow.style.transition = "none";
+        const height = floatingWindow.offsetHeight - 30;
+        if (isFloatingWindowHidden){
+            floatingWindow.style.bottom = "-" + height + "px";
+        }
+    }
+
+    function updateSelectedAugmentsOptions(cell){
         cell.querySelector('input[type=radio]').checked = true;
+    }
+
+    function updateFinalSentence(){
         let aRadio = document.querySelector('input[name="aOptions"]:checked');
         let bRadio = document.querySelector('input[name="bOptions"]:checked');
 
