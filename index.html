@@ -6,7 +6,8 @@
         body {
             padding-left: 10px;
             padding-right: 10px;
-            margin-bottom: 500px;
+            margin-bottom: 300px;
+            /* font-size: large; */
         }
 
         table, th, td {
@@ -14,12 +15,16 @@
             border-collapse: collapse;
         }
 
-        td {
+        td, #finalSentence {
             white-space: pre-line;
         }
 
         th, td {
             padding: 5px;
+        }
+
+        td:empty {
+            background-color: #cccccc;
         }
 
         #tblAugments {
@@ -31,12 +36,22 @@
             word-wrap: break-word;
         }
 
+        #tblAugments tr td:nth-child(1) {
+            padding: 0;
+            text-align: center;      /* Horizontally centers inline content */
+            vertical-align: middle;  /* Vertically centers inline content */
+        }
+
+        #tblAugments input[type="checkbox"]{
+            scale: 1.4;
+        }
+
         #floatingWindow {
             position: fixed;
             left: 0px;
             bottom: 0px;
             width: 99%;
-            min-height: 450px;
+            min-height: 250px;
             padding: 10px;
             background-color: #ffffff;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
@@ -45,6 +60,19 @@
             flex-direction: column;
             overflow: hidden;
             transition: bottom 0.2s ease-in;
+        }
+
+        #tblOptions, #tblOptions td {
+            border: 0px;
+        }
+
+        #tblOptions {
+            margin-top: 20px;
+        }
+
+        #finalSentence{
+            width: 60%;
+            font-size: larger;
         }
     </style>
 </head>
@@ -97,52 +125,43 @@
             <tbody>
             </tbody>
         </table>
+        <table id="tblOptions">
+            <tbody>
+                <tr hidden>
+                    <td style="width: 5%;">Spell:</td>
+                    <td><input id="inputSpellName"></td>
+                </tr>
+                <tr hidden>
+                    <td>Type:</td>
+                    <td>
+                        <div style="display: flex;">
+                            <select id="selectType">
+                                <option value="Attack" selected>Attack</option>
+                                <option value="Save">Save</option>
+                                <option value="Hit">Hit</option>
+                            </select>
+                        </div>
+                    </td>
+                </tr>
+                <tr hidden>
+                    <td style="width: 5%;">Effect:</td>
+                    <td>
+                        <div style="display: flex;">
+                            <select id="selectOptionEffect">
+                                
+                            </select>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
         <h2>FINAL SENTENCE</h2>
         <div id="finalSentence"></div>
     </div>
-
-    <!-- <h2>// DATABASE TABLE</h2>
-    <table id="tblData" hidden>
-        <thead>
-            <tr>
-                <th>
-                    #
-                </th>
-                <th>
-                    Augment
-                </th>
-                <th>
-                    A
-                </th>
-                <th>
-                    Type
-                </th>
-                <th>
-                    B (Attack)
-                </th>
-                <th>
-                    B (Save)
-                </th>
-                <th>
-                    B (Hit)
-                </th>
-                <th>
-                    Tooltip
-                </th>
-                <th>
-                    A (Save)
-                </th>
-                <th>
-                    B (Description)
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table> -->
 </body>
 <script>
     let data;
+    let customSpellName = "";
     async function loadData() {
         try {
             const response = await fetch('./data.json');
@@ -155,28 +174,6 @@
         const tblData = document.getElementById("tblData");
         const tblAugments = document.getElementById("tblAugments");
         for (let i = 0; i < data.length; i++){
-            // const newRow = tblData.insertRow(-1);
-            // const num = newRow.insertCell(0);
-            // const name = newRow.insertCell(1);
-            // const a = newRow.insertCell(2);
-            // const type = newRow.insertCell(3);
-            // const bAttack = newRow.insertCell(4);
-            // const bSave = newRow.insertCell(5);
-            // const bHit = newRow.insertCell(6);
-            // const tooltip = newRow.insertCell(7);
-            // const aSave = newRow.insertCell(8);
-            // const bDesc = newRow.insertCell(9);
-            // num.textContent = data[i].num;
-            // name.textContent = data[i].name;
-            // a.textContent = data[i].a;
-            // type.textContent = data[i].type;
-            // bAttack.textContent = data[i].bAttack;
-            // bSave.textContent = data[i].bSave;
-            // bHit.textContent = data[i].bHit;
-            // tooltip.textContent = data[i].tooltip;
-            // aSave.textContent = data[i].aSave;
-            // bDesc.textContent = data[i].bDesc;
-
             const newRow2 = tblAugments.insertRow(-1);
             const select = newRow2.insertCell(0);
             const name2 = newRow2.insertCell(1);
@@ -186,10 +183,11 @@
             select.innerHTML = "<input type='checkbox' data-index='" + i +"'>";
             name2.textContent = data[i].name;
             type2.textContent = data[i].type;
-            a2.textContent = data[i].a;
+            a2.textContent = data[i].aDesc;
+            if (data[i].tooltip != ""){
+                a2.textContent += "\n\n" + data[i].tooltip;
+            }
             bDesc2.textContent = data[i].bDesc;
-
-            // num.hidden = "true";
         }
 
         const checkboxes = document.querySelectorAll('#tblAugments input[type="checkbox"]');
@@ -201,6 +199,16 @@
     }
 
     loadData();
+    document.getElementById("inputSpellName").oninput = function(e) {
+        customSpellName = e.target.value;
+        updateFinalSentence();
+    };
+    document.getElementById("selectType").addEventListener("change", function(){
+        updateFinalSentence();
+    });
+    document.getElementById("selectOptionEffect").addEventListener("change", function(){
+        updateFinalSentence();
+    });
 
     function updateSelectedAugments(index, isChecked){
         // console.log(index + ", " + isChecked);
@@ -215,17 +223,28 @@
             const b = newRow.insertCell(3);
             name.textContent = data[index].name;
             type.textContent = data[index].type;
-            a.onclick = function(){
-                updateSelectedAugmentsOptions(this);
-                updateFinalSentence();
-            };
-            a.innerHTML = "<input type='radio' name='aOptions' value=" + index + ">" + data[index].a;
-            b.onclick = function(){
-                updateSelectedAugmentsOptions(this);
-                updateFinalSentence();
-            };
-            b.textContent = data[index].bDesc;
-            b.innerHTML = "<input type='radio' name='bOptions' value=" + index + ">" + data[index].bDesc;
+
+            if (data[index].aDesc != ""){
+                a.onclick = function(){
+                    updateSelectedAugmentsOptions(this);
+                    updateFinalSentence();
+                };
+                
+                if (data[index].tooltip != ""){
+                    a.innerHTML = "<input type='radio' name='aOptions' value=" + index + ">" + data[index].aDesc + "\n\n" + data[index].tooltip;;
+                } else {
+                    a.innerHTML = "<input type='radio' name='aOptions' value=" + index + ">" + data[index].aDesc;
+                }
+            }
+            
+            if (data[index].bDesc != ""){
+                b.onclick = function(){
+                    updateSelectedAugmentsOptions(this);
+                    updateFinalSentence();
+                };
+                b.innerHTML = "<input type='radio' name='bOptions' value=" + index + ">" + data[index].bDesc;
+            }
+            
         } else {
             document.getElementById("rSelectedAugment" + index).remove();
         }
@@ -256,6 +275,10 @@
         if (isFloatingWindowHidden){
             floatingWindow.style.bottom = "-" + height + "px";
         }
+
+        let bodyHeight = height + 50;
+        // console.log("bodyHeight" + bodyHeight);
+        document.body.style.marginBottom = bodyHeight + "px";
     }
 
     function updateSelectedAugmentsOptions(cell){
@@ -266,25 +289,90 @@
         let aRadio = document.querySelector('input[name="aOptions"]:checked');
         let bRadio = document.querySelector('input[name="bOptions"]:checked');
 
-        if (aRadio == null || bRadio == null){
+        if (aRadio == null){
+            return;
+        }
+        let aIndex = aRadio.value;
+
+        let tblOptions = document.getElementById("tblOptions");
+        tblOptions.rows[0].hidden = true;
+        tblOptions.rows[1].hidden = true;
+        tblOptions.rows[2].hidden = true;
+
+        let a = data[aIndex].a;
+        let type = data[aIndex].type;
+
+        let hasCustomSpell = data[aIndex].tags.includes("customSpell");
+        if (hasCustomSpell){
+            tblOptions.rows[0].hidden = false;
+            tblOptions.rows[1].hidden = false;
+
+            type = document.getElementById("selectType").value;
+            a = data[aIndex].a.replace("customSpell", customSpellName);
+        } else {
+            document.getElementById("inputSpellName").value = "";
+            customSpellName = "";
+        }
+
+        let hasOptionEffect = data[aIndex].tags.includes("optionEffect");
+        const selectOptionEffect = document.getElementById("selectOptionEffect");
+        if (hasOptionEffect){
+            tblOptions.rows[2].hidden = false;
+            if (selectOptionEffect.options.length == 0){
+                for (let i = 0; i < data[aIndex].optionEffects.length; i++){
+                    selectOptionEffect.add(new Option(data[aIndex].optionEffects[i], data[aIndex].optionEffects[i]));
+                }
+            }
+
+            let optionEffectLowercase = selectOptionEffect.value.toLowerCase();
+            if (optionEffectLowercase.includes("attack")){
+                type = "Attack";
+            } else if (optionEffectLowercase.includes("saving throw")){
+                type = "Save";
+            }
+
+            a = a.replace("optionEffect", selectOptionEffect.value);
+        } else {
+            selectOptionEffect.options.length = 0;
+        }
+
+        if (hasCustomSpell){
+            if (customSpellName === ""){
+                document.getElementById("finalSentence").textContent = "";
+                return;
+            }
+        }
+
+        if (bRadio == null){
+            return;
+        }
+        let bIndex = bRadio.value;
+
+        let b = "";
+        if (type === "Attack"){
+            b = data[bIndex].bAttack;
+        } else if (type === "Save"){
+            b = data[bIndex].bSave;
+        } else if (type === "Hit"){
+            b = data[bIndex].bHit;
+        }
+
+        if (a === "" || b === ""){
+            document.getElementById("finalSentence").textContent = "";
             return;
         }
 
-        let aIndex = aRadio.value;
-        let bIndex = bRadio.value;
-
-        let finalSentence = data[aIndex].a;
-        let type = data[aIndex].type;
-        if (type === "Attack"){
-            finalSentence += data[bIndex].bAttack;
-        } else if (type === "Save"){
-            finalSentence += data[bIndex].bSave;
-        } else if (type === "Hit"){
-            finalSentence += data[bIndex].bHit;
+        // EDGE CASE, where A ends with a "." and B starts with a ".", remove the extra "."
+        if (a.at(-1) === "." && b.at(0) === "."){
+            b = b.slice(1);
         }
+
+        let finalSentence = a;
+        finalSentence += b;
         finalSentence += data[aIndex].aSave;
-        finalSentence += data[aIndex].tooltip;
+        finalSentence += "\n\n" + data[aIndex].tooltip;
         document.getElementById("finalSentence").textContent = finalSentence;
+        updateFloatingWindowPosition();
     }
 </script>
 </html>
