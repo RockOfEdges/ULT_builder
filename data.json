@@ -256,7 +256,7 @@
   {
     "num": 15,
     "name": "Link",
-    "a": "When you use your Link augment, you can choose to channel your next spell more efficiently. The next spell you concentrate with Link will not count towards your active Link concentrations, and your Concentration on this spell cannot be broken from damage. You can also choose to break your Concentration on this spell as a free action during your turn to make one Weapon Attack with this weapon or cast a damaging Cantrip you know.",
+    "a": "When you use your Link augment, you can choose to channel your next spell more efficiently. The next spell you concentrate with Link will not count towards your active Link concentrations, and your Concentration on this spell cannot be broken from damage. You can also choose to break your Concentration on this spell as a free action during your turn to make one Weapon Attack with this weapon or cast a cantrip with an Attack Roll you know.",
     "aAttack": "",
     "aSave": "",
     "aHit": "",
@@ -266,7 +266,7 @@
     "bHit": " They also become marked for 1 minute. When marked creatures deal damage to you, you do not need to roll to maintain Concentration of spells.",
     "tooltip": "",
     "aSaveAfter": "",
-    "aDesc": "When you use your Link augment, you can choose to channel your next spell more efficiently. The next spell you concentrate with Link will not count towards your active Link concentrations, and your Concentration on this spell cannot be broken from damage. You can also choose to break your Concentration on this spell as a free action during your turn to make one Weapon Attack with this weapon or cast a damaging Cantrip you know.",
+    "aDesc": "When you use your Link augment, you can choose to channel your next spell more efficiently. The next spell you concentrate with Link will not count towards your active Link concentrations, and your Concentration on this spell cannot be broken from damage. You can also choose to break your Concentration on this spell as a free action during your turn to make one Weapon Attack with this weapon or cast a cantrip with an Attack Roll you know.",
     "bDesc": "Affected creatures become marked for 1 minute. When marked creatures deal damage to you, you do not need to roll to maintain Concentration of spells.",
     "tags": "",
     "optionEffects": []
