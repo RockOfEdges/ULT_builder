@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>ULT Builder v0.1</title>
+    <title>Universal Limit Trigger (ULT) v0.1</title>
     <style>
         body {
             padding-left: 10px;
@@ -91,7 +91,8 @@
     </style>
 </head>
 <body>
-    <h1>ULT Builder v0.1</h1>
+    <h1>Universal Limit Trigger (ULT) v0.1</h1>
+    <h2>Choose the augments your EOS Unit has, then combine A and B at the lower panel to create your ULT!</h2>
     <table id="tblAugments">
         <thead>
             <tr>
@@ -118,7 +119,7 @@
 
     <div id="floatingWindow">
         <button id="btnShowHide" onclick="toggleFloatingWindow()">Hide</button>
-        <h2>SELECTED AUGMENTS</h2>
+        <h2>Selected Augments</h2>
         <table id="tblSelectedAugments">
             <thead>
                 <tr>
@@ -182,7 +183,7 @@
             </tbody>
         </table>
         <div id="headerFinalSentence">
-            <h2 style="margin-right: 20px;">FINAL SENTENCE</h2>
+            <h2 style="margin-right: 20px;">ULT Description</h2>
             <button id="btnCopyToClipboard" onclick="copyFinalSentence()">Copy Text</button>
         </div>
         <div id="finalSentence"></div>
