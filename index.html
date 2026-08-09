@@ -64,15 +64,29 @@
 
         #tblOptions, #tblOptions td {
             border: 0px;
+            padding: 0px;
         }
 
         #tblOptions {
             margin-top: 20px;
         }
 
+        #tblOptions td {
+            height: 22px;
+        }
+
         #finalSentence{
             width: 60%;
             font-size: larger;
+        }
+
+        select{
+            min-width: 100px;
+        }
+
+        #headerFinalSentence{
+            display: flex; 
+            align-items: center;
         }
     </style>
 </head>
@@ -128,7 +142,7 @@
         <table id="tblOptions">
             <tbody>
                 <tr hidden>
-                    <td style="width: 5%;">Spell:</td>
+                    <td style="width: 10%;">Spell:</td>
                     <td><input id="inputSpellName"></td>
                 </tr>
                 <tr hidden>
@@ -144,7 +158,19 @@
                     </td>
                 </tr>
                 <tr hidden>
-                    <td style="width: 5%;">Effect:</td>
+                    <td>Augment Level:</td>
+                    <td>
+                        <div style="display: flex;">
+                            <select id="selectAugmentLevel">
+                                <option value="2" selected>I</option>
+                                <option value="3">II</option>
+                                <option value="4">III</option>
+                            </select>
+                        </div>
+                    </td>
+                </tr>
+                <tr hidden>
+                    <td style="width: 10%;">Effect:</td>
                     <td>
                         <div style="display: flex;">
                             <select id="selectOptionEffect">
@@ -155,7 +181,10 @@
                 </tr>
             </tbody>
         </table>
-        <h2>FINAL SENTENCE</h2>
+        <div id="headerFinalSentence">
+            <h2 style="margin-right: 20px;">FINAL SENTENCE</h2>
+            <button id="btnCopyToClipboard" onclick="copyFinalSentence()">Copy Text</button>
+        </div>
         <div id="finalSentence"></div>
     </div>
 </body>
@@ -204,6 +233,9 @@
         updateFinalSentence();
     };
     document.getElementById("selectType").addEventListener("change", function(){
+        updateFinalSentence();
+    });
+    document.getElementById("selectAugmentLevel").addEventListener("change", function(){
         updateFinalSentence();
     });
     document.getElementById("selectOptionEffect").addEventListener("change", function(){
@@ -298,6 +330,7 @@
         tblOptions.rows[0].hidden = true;
         tblOptions.rows[1].hidden = true;
         tblOptions.rows[2].hidden = true;
+        tblOptions.rows[3].hidden = true;
 
         let a = data[aIndex].a;
         let type = data[aIndex].type;
@@ -308,16 +341,29 @@
             tblOptions.rows[1].hidden = false;
 
             type = document.getElementById("selectType").value;
-            a = data[aIndex].a.replace("customSpell", customSpellName);
+            if (type === "Attack"){
+                a = data[aIndex].aAttack.replace("customSpell", customSpellName);
+            } else if (type === "Save"){
+                a = data[aIndex].aSave.replace("customSpell", customSpellName);
+            } else if (type === "Hit"){
+                a = data[aIndex].aHit.replace("customSpell", customSpellName);
+            }
         } else {
             document.getElementById("inputSpellName").value = "";
             customSpellName = "";
         }
 
+        let hasCustomLevel = data[aIndex].tags.includes("customLevel");
+        const selectAugmentLevel = document.getElementById("selectAugmentLevel");
+        if (hasCustomLevel){
+            tblOptions.rows[2].hidden = false;
+            a = a.replace("customLevel", selectAugmentLevel.value);
+        }
+
         let hasOptionEffect = data[aIndex].tags.includes("optionEffect");
         const selectOptionEffect = document.getElementById("selectOptionEffect");
         if (hasOptionEffect){
-            tblOptions.rows[2].hidden = false;
+            tblOptions.rows[3].hidden = false;
             if (selectOptionEffect.options.length == 0){
                 for (let i = 0; i < data[aIndex].optionEffects.length; i++){
                     selectOptionEffect.add(new Option(data[aIndex].optionEffects[i], data[aIndex].optionEffects[i]));
@@ -369,10 +415,29 @@
 
         let finalSentence = a;
         finalSentence += b;
-        finalSentence += data[aIndex].aSave;
-        finalSentence += "\n\n" + data[aIndex].tooltip;
+        finalSentence += data[aIndex].aSaveAfter;
+        if (data[aIndex].tooltip != ""){
+            finalSentence += "\n\n" + data[aIndex].tooltip;
+        }
         document.getElementById("finalSentence").textContent = finalSentence;
         updateFloatingWindowPosition();
+    }
+
+    function copyFinalSentence() {
+        const finalSentence = document.getElementById("finalSentence").innerText;
+
+        navigator.clipboard.writeText(finalSentence)
+            .then(() => {
+                const button = document.getElementById("btnCopyToClipboard");
+                button.textContent = "Copied!";
+                
+                setTimeout(() => {
+                    button.textContent = "Copy Text";
+                }, 2000);
+            })
+            .catch(err => {
+                console.error("Failed to copy text: ", err);
+            });
     }
 </script>
 </html>
