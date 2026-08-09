@@ -118,7 +118,7 @@
     </table>
 
     <div id="floatingWindow">
-        <button id="btnShowHide" onclick="toggleFloatingWindow()">Hide</button>
+        <button id="btnShowHide" onclick="toggleFloatingWindow()">Hide (Space)</button>
         <h2>Selected Augments</h2>
         <table id="tblSelectedAugments">
             <thead>
@@ -842,10 +842,10 @@
         const height = floatingWindow.offsetHeight - 30;
         if (isFloatingWindowHidden){
             floatingWindow.style.bottom = "0px";
-            btnShowHide.textContent = "Hide";
+            btnShowHide.textContent = "Hide (Space)";
         } else {
             floatingWindow.style.bottom = "-" + height + "px";
-            btnShowHide.textContent = "Show";
+            btnShowHide.textContent = "Show (Space)";
         }
         isFloatingWindowHidden = !isFloatingWindowHidden;
     }
