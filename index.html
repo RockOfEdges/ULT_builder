@@ -84,7 +84,7 @@
             min-width: 100px;
         }
 
-        #headerFinalSentence{
+        .headerFloatingWindow{
             display: flex; 
             align-items: center;
         }
@@ -119,7 +119,11 @@
 
     <div id="floatingWindow">
         <button id="btnShowHide" onclick="toggleFloatingWindow()">Hide (Space)</button>
-        <h2>Selected Augments</h2>
+        <div class="headerFloatingWindow">
+            <h2 style="margin-right: 20px;">Selected Augments</h2>
+            <button id="btnImport">Import</button>
+            <input type="file" id="inputFile" accept=".json" style="display: none;" />
+        </div>
         <table id="tblSelectedAugments">
             <thead>
                 <tr>
@@ -182,7 +186,7 @@
                 </tr>
             </tbody>
         </table>
-        <div id="headerFinalSentence">
+        <div class="headerFloatingWindow">
             <h2 style="margin-right: 20px;">ULT Description</h2>
             <button id="btnCopyToClipboard" onclick="copyFinalSentence()">Copy Text</button>
         </div>
@@ -228,6 +232,7 @@
         });
     }
 
+    // Function call, event listeners
     loadData();
     document.getElementById("inputSpellName").oninput = function(e) {
         customSpellName = e.target.value;
@@ -260,6 +265,30 @@
     }
     });
 
+    const btnImport = document.getElementById("btnImport");
+    const inputFile = document.getElementById("inputFile");
+    btnImport.addEventListener('click', () => {
+        inputFile.click();
+    });
+    inputFile.addEventListener('change', (event) => {
+        const file = event.target.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            try {
+                const jsonData = JSON.parse(e.target.result);
+                // var jsonDataText = JSON.stringify(jsonData, null, 2);
+                importData(jsonData);
+            } catch (err) {
+                alert('Import failed');
+                console.log(err);
+            }
+        };
+        reader.readAsText(file);
+    });
+
+    // Functions
     function updateSelectedAugments(index, isChecked){
         // console.log(index + ", " + isChecked);
         const tblSelectedAugments = document.getElementById("tblSelectedAugments");
@@ -299,6 +328,7 @@
             document.getElementById("rSelectedAugment" + index).remove();
         }
         updateFloatingWindowPosition();
+        updateFinalSentence();
     }
 
     let isFloatingWindowHidden = false;
@@ -340,6 +370,7 @@
         let bRadio = document.querySelector('input[name="bOptions"]:checked');
 
         if (aRadio == null){
+            document.getElementById("finalSentence").textContent = "";
             return;
         }
         let aIndex = aRadio.value;
@@ -408,6 +439,7 @@
         }
 
         if (bRadio == null){
+            document.getElementById("finalSentence").textContent = "";
             return;
         }
         let bIndex = bRadio.value;
@@ -456,6 +488,32 @@
             .catch(err => {
                 console.error("Failed to copy text: ", err);
             });
+    }
+
+    function importData(jsonData){
+        const tblSelectedAugments = document.getElementById("tblSelectedAugments");
+        for (let i = tblSelectedAugments.rows.length - 1; i > 0; i--) {
+            tblSelectedAugments.deleteRow(i);
+        }
+
+        var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        checkboxes.forEach(e => e.checked = false);
+
+        var idList = [];
+        for (var i = 0; i < data.length; i++){
+            for (var j = 0; j < jsonData.length; j++){
+                if (data[i].name === jsonData[j]){
+                    idList.push(data[i].num - 1);
+                }
+            }
+        }
+        
+        for (var i = 0; i < idList.length; i++){
+            document.querySelector('input[type="checkbox"][data-index="' + idList[i] + '"]').checked = true;
+            updateSelectedAugments(idList[i], true);
+        }
+
+        updateFinalSentence();
     }
 </script>
 </html>
