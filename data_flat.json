@@ -1,5 +1,3 @@
-
-
 [
   {
     "num": 1,
@@ -202,7 +200,7 @@
   {
     "num": 12,
     "name": "Guardian",
-    "a": "As a Bonus Action, you give yourself and one creature within 15 feet you can see Resistance to all damage until the start of your next turn. The next time the chosen creature deals damage during this time will deal extra damage equal to your Proficiency modifier.",
+    "a": "As a Bonus Action, you give yourself and one creature within 15 feet you can see Resistance to all damage until the start of your next turn. The next time you and the next time chosen creature deals damage during this time will deal extra damage equal to your Proficiency modifier.",
     "aAttack": "",
     "aSave": "",
     "aHit": "",
@@ -212,7 +210,7 @@
     "bHit": " Then, you and one willing creature of your choice within 15 feet can move up to your respective Speeds without provoking Opportunity Attacks.",
     "tooltip": "",
     "aSaveAfter": "",
-    "aDesc": "As a Bonus Action, you give yourself and one creature within 15 feet you can see Resistance to all damage until the start of your next turn. The next time the chosen creature deals damage during this time will deal extra damage equal to your Proficiency modifier.",
+    "aDesc": "As a Bonus Action, you give yourself and one creature within 15 feet you can see Resistance to all damage until the start of your next turn. The next time you and the next time chosen creature deals damage during this time will deal extra damage equal to your Proficiency modifier.",
     "bDesc": "Then, you and one willing creature of your choice within 15 feet can move up to your respective Speeds without provoking Opportunity Attacks.",
     "tags": "",
     "optionEffects": []
@@ -243,8 +241,8 @@
     "aSave": "You cast customSpell at Level customLevel without expending a spell slot. On a fail, the take one extra die roll of damage",
     "aHit": "You cast customSpell at Level customLevel without expending a spell slot.",
     "type": "",
-    "bAttack": " On a miss, you can choose to reroll one of your Attack Rolls. You must use the new roll, even if it is lower than the previous roll.",
-    "bSave": ". If a creature succeeds the Saving Throw, you can force one target to reroll their Saving Throw. They must use the new roll, even if it is higher than the previous roll.",
+    "bAttack": " On a miss, you can choose to reroll any number of your Attack Rolls. You must use the new rolls, even if it is lower than the previous roll.",
+    "bSave": ". If at least one creature succeeds the Saving Throw, you can force any number of targets to reroll their Saving Throw. They must use the new roll, even if it is higher than the previous roll.",
     "bHit": " You can also reroll each damage die from the attack once. You must use the new rolls, even if they are lower than the previous roll.",
     "tooltip": "",
     "aSaveAfter": "",

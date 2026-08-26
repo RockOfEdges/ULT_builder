@@ -84,7 +84,7 @@
             min-width: 100px;
         }
 
-        #headerFinalSentence{
+        .headerFloatingWindow{
             display: flex; 
             align-items: center;
         }
@@ -119,7 +119,11 @@
 
     <div id="floatingWindow">
         <button id="btnShowHide" onclick="toggleFloatingWindow()">Hide (Space)</button>
-        <h2>Selected Augments</h2>
+        <div class="headerFloatingWindow">
+            <h2 style="margin-right: 20px;">Selected Augments</h2>
+            <button id="btnImport">Import</button>
+            <input type="file" id="inputFile" accept=".json" style="display: none;" />
+        </div>
         <table id="tblSelectedAugments">
             <thead>
                 <tr>
@@ -182,7 +186,7 @@
                 </tr>
             </tbody>
         </table>
-        <div id="headerFinalSentence">
+        <div class="headerFloatingWindow">
             <h2 style="margin-right: 20px;">ULT Description</h2>
             <button id="btnCopyToClipboard" onclick="copyFinalSentence()">Copy Text</button>
         </div>
@@ -193,14 +197,6 @@
     let data;
     let customSpellName = "";
     async function loadData() {
-        // try {
-        //     const response = await fetch('./data.json');
-        //     data = await response.json();
-        //     console.log(data);
-        // } catch (error) {
-        //     console.error("Could not fetch the JSON file:", error);
-        // }
-
 data = JSON.parse(`
 [
   {
@@ -404,7 +400,7 @@ data = JSON.parse(`
   {
     "num": 12,
     "name": "Guardian",
-    "a": "As a Bonus Action, you give yourself and one creature within 15 feet you can see Resistance to all damage until the start of your next turn. The next time the chosen creature deals damage during this time will deal extra damage equal to your Proficiency modifier.",
+    "a": "As a Bonus Action, you give yourself and one creature within 15 feet you can see Resistance to all damage until the start of your next turn. The next time you and the next time chosen creature deals damage during this time will deal extra damage equal to your Proficiency modifier.",
     "aAttack": "",
     "aSave": "",
     "aHit": "",
@@ -414,7 +410,7 @@ data = JSON.parse(`
     "bHit": " Then, you and one willing creature of your choice within 15 feet can move up to your respective Speeds without provoking Opportunity Attacks.",
     "tooltip": "",
     "aSaveAfter": "",
-    "aDesc": "As a Bonus Action, you give yourself and one creature within 15 feet you can see Resistance to all damage until the start of your next turn. The next time the chosen creature deals damage during this time will deal extra damage equal to your Proficiency modifier.",
+    "aDesc": "As a Bonus Action, you give yourself and one creature within 15 feet you can see Resistance to all damage until the start of your next turn. The next time you and the next time chosen creature deals damage during this time will deal extra damage equal to your Proficiency modifier.",
     "bDesc": "Then, you and one willing creature of your choice within 15 feet can move up to your respective Speeds without provoking Opportunity Attacks.",
     "tags": "",
     "optionEffects": []
@@ -445,8 +441,8 @@ data = JSON.parse(`
     "aSave": "You cast customSpell at Level customLevel without expending a spell slot. On a fail, the take one extra die roll of damage",
     "aHit": "You cast customSpell at Level customLevel without expending a spell slot.",
     "type": "",
-    "bAttack": " On a miss, you can choose to reroll one of your Attack Rolls. You must use the new roll, even if it is lower than the previous roll.",
-    "bSave": ". If a creature succeeds the Saving Throw, you can force one target to reroll their Saving Throw. They must use the new roll, even if it is higher than the previous roll.",
+    "bAttack": " On a miss, you can choose to reroll any number of your Attack Rolls. You must use the new rolls, even if it is lower than the previous roll.",
+    "bSave": ". If at least one creature succeeds the Saving Throw, you can force any number of targets to reroll their Saving Throw. They must use the new roll, even if it is higher than the previous roll.",
     "bHit": " You can also reroll each damage die from the attack once. You must use the new rolls, even if they are lower than the previous roll.",
     "tooltip": "",
     "aSaveAfter": "",
@@ -748,7 +744,7 @@ data = JSON.parse(`
     "optionEffects": []
   }
 ]
-`);
+`)
 
         const tblData = document.getElementById("tblData");
         const tblAugments = document.getElementById("tblAugments");
@@ -777,6 +773,7 @@ data = JSON.parse(`
         });
     }
 
+    // Function call, event listeners
     loadData();
     document.getElementById("inputSpellName").oninput = function(e) {
         customSpellName = e.target.value;
@@ -791,7 +788,48 @@ data = JSON.parse(`
     document.getElementById("selectOptionEffect").addEventListener("change", function(){
         updateFinalSentence();
     });
+    document.addEventListener('keydown', (event) => {
+    if (event.code === 'Space' || event.key === ' ') {
+        const activeEl = document.activeElement;
+    
+        const isTyping = activeEl && (
+        activeEl.tagName === 'INPUT' ||
+        activeEl.tagName === 'TEXTAREA' ||
+        activeEl.isContentEditable
+        );
+        
+        if (!isTyping) {
+            event.preventDefault();
+            
+            toggleFloatingWindow();
+        }
+    }
+    });
 
+    const btnImport = document.getElementById("btnImport");
+    const inputFile = document.getElementById("inputFile");
+    btnImport.addEventListener('click', () => {
+        inputFile.click();
+    });
+    inputFile.addEventListener('change', (event) => {
+        const file = event.target.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            try {
+                const jsonData = JSON.parse(e.target.result);
+                // var jsonDataText = JSON.stringify(jsonData, null, 2);
+                importData(jsonData);
+            } catch (err) {
+                alert('Import failed');
+                console.log(err);
+            }
+        };
+        reader.readAsText(file);
+    });
+
+    // Functions
     function updateSelectedAugments(index, isChecked){
         // console.log(index + ", " + isChecked);
         const tblSelectedAugments = document.getElementById("tblSelectedAugments");
@@ -831,6 +869,7 @@ data = JSON.parse(`
             document.getElementById("rSelectedAugment" + index).remove();
         }
         updateFloatingWindowPosition();
+        updateFinalSentence();
     }
 
     let isFloatingWindowHidden = false;
@@ -872,6 +911,7 @@ data = JSON.parse(`
         let bRadio = document.querySelector('input[name="bOptions"]:checked');
 
         if (aRadio == null){
+            document.getElementById("finalSentence").textContent = "";
             return;
         }
         let aIndex = aRadio.value;
@@ -940,6 +980,7 @@ data = JSON.parse(`
         }
 
         if (bRadio == null){
+            document.getElementById("finalSentence").textContent = "";
             return;
         }
         let bIndex = bRadio.value;
@@ -988,6 +1029,32 @@ data = JSON.parse(`
             .catch(err => {
                 console.error("Failed to copy text: ", err);
             });
+    }
+
+    function importData(jsonData){
+        const tblSelectedAugments = document.getElementById("tblSelectedAugments");
+        for (let i = tblSelectedAugments.rows.length - 1; i > 0; i--) {
+            tblSelectedAugments.deleteRow(i);
+        }
+
+        var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        checkboxes.forEach(e => e.checked = false);
+
+        var idList = [];
+        for (var i = 0; i < data.length; i++){
+            for (var j = 0; j < jsonData.length; j++){
+                if (data[i].name === jsonData[j]){
+                    idList.push(data[i].num - 1);
+                }
+            }
+        }
+        
+        for (var i = 0; i < idList.length; i++){
+            document.querySelector('input[type="checkbox"][data-index="' + idList[i] + '"]').checked = true;
+            updateSelectedAugments(idList[i], true);
+        }
+
+        updateFinalSentence();
     }
 </script>
 </html>
