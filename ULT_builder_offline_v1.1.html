@@ -121,7 +121,9 @@
         <button id="btnShowHide" onclick="toggleFloatingWindow()">Hide (Space)</button>
         <div class="headerFloatingWindow">
             <h2 style="margin-right: 20px;">Selected Augments</h2>
-            <button id="btnImport">Import</button>
+            <span title="BETA FEATURE: Import your EOS Unit!" tabindex="0" style="display: inline-block;">
+                <button id="btnImport">Import</button>
+            </span>
             <input type="file" id="inputFile" accept=".json" style="display: none;" />
         </div>
         <table id="tblSelectedAugments">
@@ -1033,13 +1035,17 @@ data = JSON.parse(`
 
     function importData(jsonData){
         const tblSelectedAugments = document.getElementById("tblSelectedAugments");
+
+        // Clear selected augments table
         for (let i = tblSelectedAugments.rows.length - 1; i > 0; i--) {
             tblSelectedAugments.deleteRow(i);
         }
 
+        // Clear checkboxes
         var checkboxes = document.querySelectorAll('input[type="checkbox"]');
         checkboxes.forEach(e => e.checked = false);
 
+        // Loop through imported data
         var idList = [];
         for (var i = 0; i < data.length; i++){
             for (var j = 0; j < jsonData.length; j++){
@@ -1049,9 +1055,13 @@ data = JSON.parse(`
             }
         }
         
+        // Set checkboxes and update selected augments and final sentence
         for (var i = 0; i < idList.length; i++){
-            document.querySelector('input[type="checkbox"][data-index="' + idList[i] + '"]').checked = true;
-            updateSelectedAugments(idList[i], true);
+            var checkbox = document.querySelector('input[type="checkbox"][data-index="' + idList[i] + '"]');
+            if (checkbox.checked == false){
+                checkbox.checked = true;
+                updateSelectedAugments(idList[i], true);
+            }
         }
 
         updateFinalSentence();
