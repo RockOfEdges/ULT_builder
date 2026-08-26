@@ -210,7 +210,7 @@
     "bHit": " Then, you and one willing creature of your choice within 15 feet can move up to your respective Speeds without provoking Opportunity Attacks.",
     "tooltip": "",
     "aSaveAfter": "",
-    "aDesc": "As a Bonus Action, you give yourself and one creature within 15 feet you can see Resistance to all damage until the start of your next turn. The next time the chosen creature deals damage during this time will deal extra damage equal to your Proficiency modifier.",
+    "aDesc": "As a Bonus Action, you give yourself and one creature within 15 feet you can see Resistance to all damage until the start of your next turn. The next time you and the next time chosen creature deals damage during this time will deal extra damage equal to your Proficiency modifier.",
     "bDesc": "Then, you and one willing creature of your choice within 15 feet can move up to your respective Speeds without provoking Opportunity Attacks.",
     "tags": "",
     "optionEffects": []
