@@ -1033,7 +1033,7 @@ data = JSON.parse(`
             });
     }
 
-    function importData(jsonData){
+    function importData(eosUnit){
         const tblSelectedAugments = document.getElementById("tblSelectedAugments");
 
         // Clear selected augments table
@@ -1046,13 +1046,43 @@ data = JSON.parse(`
         checkboxes.forEach(e => e.checked = false);
 
         // Loop through imported data
+        // var idList = [];
+        // for (var i = 0; i < data.length; i++){
+        //     for (var j = 0; j < jsonData.length; j++){
+        //         if (data[i].name === jsonData[j]){
+        //             idList.push(data[i].num - 1);
+        //         }
+        //     }
+        // }
+
+        // Parse through EOS Unit data
         var idList = [];
         for (var i = 0; i < data.length; i++){
-            for (var j = 0; j < jsonData.length; j++){
-                if (data[i].name === jsonData[j]){
+            eosUnit.meleeAugs.forEach((augment) => {
+                if (data[i].name === augment.namePlain){
                     idList.push(data[i].num - 1);
                 }
-            }
+            });
+            eosUnit.rangedAugs.forEach((augment) => {
+                if (data[i].name === augment.namePlain){
+                    idList.push(data[i].num - 1);
+                }
+            });
+            eosUnit.defensiveAugs.forEach((augment) => {
+                if (data[i].name === augment.namePlain){
+                    idList.push(data[i].num - 1);
+                }
+            });
+            eosUnit.espAugs.forEach((augment) => {
+                if (data[i].name === augment.namePlain){
+                    idList.push(data[i].num - 1);
+                }
+            });
+            eosUnit.utilityAugs.forEach((augment) => {
+                if (data[i].name === augment.namePlain){
+                    idList.push(data[i].num - 1);
+                }
+            });
         }
         
         // Set checkboxes and update selected augments and final sentence
